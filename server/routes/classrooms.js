@@ -32,7 +32,7 @@ router
     const schoolsData = helper.readData(schoolsDataFile);
     const activitiesData = helper.readData(activitiesDataFile);
 
-    const matchingClassrooms = data.filter((item) => item.id === req.params.id);
+    const matchingClassrooms = data.filter((item) => item.id === parseInt(req.params.id, 10));
 
     if (matchingClassrooms.length === 0) {
       res.sendStatus(404);
@@ -41,6 +41,7 @@ router
 
       [classMatch.school] = helper.getItemsById(schoolsData, classMatch.school_id);
 
+      // eslint-disable-next-line max-len
       classMatch.activities = activitiesData.filter((item) => item.classroom_id === req.params.id);
 
       res.send(classMatch);

@@ -2,7 +2,9 @@
   // eslint-disable-next-line no-undef
   angular
     .module('app')
-    .filter('activityMonthFilter', () => function (activities, filterMonth) {
+    .filter('activityMonthFilter', function (activities, filterMonth) {
+      console.info('activities', activities);
+      console.info('filterMonth', filterMonth);
       // if no filterMonth was provided, return all activities
       if (!filterMonth) {
         return activities;

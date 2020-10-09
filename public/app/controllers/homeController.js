@@ -1,7 +1,12 @@
 (function () {
-  function homeController(dataService, notifier) {
+  function homeController(dataService, notifier, $route, $log) {
     const vm = this;
     vm.message = 'Welcome to School Buddy!';
+    vm.refresh = () => {
+      $log.debug($route.current);
+      $log.debug($route.routes);
+      $route.reload();
+    };
 
     function showError(message) {
       notifier.error(message);
@@ -31,5 +36,5 @@
   // eslint-disable-next-line no-undef
   angular
     .module('app')
-    .controller('HomeController', ['dataService', 'notifier', homeController]);
+    .controller('HomeController', ['dataService', 'notifier', '$route', '$log', homeController]);
 }());

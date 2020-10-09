@@ -18,8 +18,7 @@ router
   .route('/:id')
   .get((req, res) => {
     const data = helper.readData(datafile);
-
-    const matchingSchools = data.filter((item) => item.school_id === req.params.id);
+    const matchingSchools = data.filter((item) => item.id === parseInt(req.params.id, 10));
 
     if (matchingSchools.length === 0) {
       res.sendStatus(404);

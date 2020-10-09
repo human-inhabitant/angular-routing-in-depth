@@ -29,7 +29,8 @@ router
   .get((req, res) => {
     const data = helper.readData(datafile);
 
-    const matchingActivities = data.filter((item) => item.activity_id === req.params.id);
+    // eslint-disable-next-line max-len
+    const matchingActivities = data.filter((item) => item.activity_id === parseInt(req.params.id, 10));
 
     if (matchingActivities.length === 0) {
       res.sendStatus(404);
